@@ -1,4 +1,3 @@
-import { m } from 'framer-motion'
 import { ArrowRight, Download, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons'
 import { ButtonLink } from '../components/Button'
@@ -39,11 +38,7 @@ export function Hero() {
           {profile.title}
         </p>
 
-        <m.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        >
+        <div>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
             {profile.tagline}
           </p>
@@ -93,7 +88,7 @@ export function Hero() {
               </a>
             </li>
           </ul>
-        </m.div>
+        </div>
       </div>
     </section>
   )
