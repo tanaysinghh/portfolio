@@ -1,12 +1,11 @@
-import { Mail, Send } from 'lucide-react'
+import { Mail, Phone, Send } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons'
 import { ButtonLink, buttonBase } from '../components/Button'
-import { Placeholder } from '../components/Placeholder'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
 import { profile } from '../data/profile'
-import { isPlaceholder, mailto } from '../lib/placeholder'
+import { mailto } from '../lib/placeholder'
 
 type Field = 'name' | 'email' | 'message'
 type Errors = Partial<Record<Field, string>>
@@ -68,13 +67,17 @@ export function Contact() {
         <Reveal>
           <p className="max-w-md text-lg leading-relaxed text-muted">{profile.contactLine}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            {isPlaceholder(profile.email) ? (
-              <Placeholder className="min-h-11 px-4 text-sm">TODO: email address</Placeholder>
-            ) : (
-              <ButtonLink href={mailto(profile.email)} icon={<Mail size={18} aria-hidden="true" />}>
-                {profile.email}
-              </ButtonLink>
-            )}
+            <ButtonLink href={mailto(profile.email)} icon={<Mail size={18} aria-hidden="true" />}>
+              {profile.email}
+            </ButtonLink>
+            <ButtonLink
+              href={profile.phoneHref}
+              variant="secondary"
+              icon={<Phone size={18} aria-hidden="true" />}
+              aria-label={`Call ${profile.phone}`}
+            >
+              {profile.phone}
+            </ButtonLink>
             <ButtonLink
               href={profile.github}
               target="_blank"
@@ -84,19 +87,15 @@ export function Contact() {
             >
               GitHub
             </ButtonLink>
-            {isPlaceholder(profile.linkedin) ? (
-              <Placeholder className="min-h-11 px-4 text-sm">TODO: LinkedIn URL</Placeholder>
-            ) : (
-              <ButtonLink
-                href={profile.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="secondary"
-                icon={<LinkedinIcon size={18} />}
-              >
-                LinkedIn
-              </ButtonLink>
-            )}
+            <ButtonLink
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="secondary"
+              icon={<LinkedinIcon size={18} />}
+            >
+              LinkedIn
+            </ButtonLink>
           </div>
         </Reveal>
 

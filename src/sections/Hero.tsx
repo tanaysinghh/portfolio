@@ -2,9 +2,7 @@ import { m } from 'framer-motion'
 import { ArrowRight, Download, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons'
 import { ButtonLink } from '../components/Button'
-import { Placeholder } from '../components/Placeholder'
 import { profile } from '../data/profile'
-import { isPlaceholder } from '../lib/placeholder'
 
 const socialClass =
   'inline-flex size-11 items-center justify-center rounded-lg border border-line text-muted transition-colors duration-200 hover:border-accent hover:text-accent'
@@ -84,19 +82,15 @@ export function Hero() {
               </a>
             </li>
             <li>
-              {isPlaceholder(profile.linkedin) ? (
-                <Placeholder>TODO: LinkedIn URL</Placeholder>
-              ) : (
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn profile (opens in a new tab)"
-                  className={socialClass}
-                >
-                  <LinkedinIcon />
-                </a>
-              )}
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile (opens in a new tab)"
+                className={socialClass}
+              >
+                <LinkedinIcon />
+              </a>
             </li>
           </ul>
         </m.div>

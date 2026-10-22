@@ -2,7 +2,7 @@ import { ArrowUpRight, Trophy } from 'lucide-react'
 import { Placeholder } from '../components/Placeholder'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
-import { hackathons } from '../data/hackathons'
+import { alsoParticipated, hackathons } from '../data/hackathons'
 import { isPlaceholder } from '../lib/placeholder'
 
 function Value({ text }: { text: string }) {
@@ -70,6 +70,24 @@ export function Hackathons() {
           </Reveal>
         ))}
       </ol>
+
+      {alsoParticipated.length > 0 && (
+        <Reveal className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 md:ml-2">
+          <h3 className="font-mono text-xs font-medium tracking-widest text-muted uppercase">
+            Also participated
+          </h3>
+          <ul className="flex flex-wrap gap-2">
+            {alsoParticipated.map((name) => (
+              <li
+                key={name}
+                className="rounded-md border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg"
+              >
+                {name}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      )}
     </Section>
   )
 }

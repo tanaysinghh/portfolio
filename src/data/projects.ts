@@ -4,7 +4,7 @@ export type Project = {
   highlight?: string
   tech: string[]
   github: string
-  live: string
+  live?: string
 }
 
 export const projects: Project[] = [
@@ -15,7 +15,7 @@ export const projects: Project[] = [
     highlight: 'Java 21 · Spring Boot 4 · real-time over WebSocket',
     tech: ['Java', 'Spring Boot', 'React', 'PostgreSQL', 'WebSocket', 'Docker'],
     github: 'https://github.com/tanaysinghh/uptime-monitor',
-    live: 'https://uptime-monitor-client.onrender.com',
+    live: 'https://uptime-monitor-client.onrender.com/',
   },
   {
     title: 'Meridian',
@@ -33,7 +33,6 @@ export const projects: Project[] = [
     highlight: 'Top 20 of ~12,000 · Intain FinTech Challenge 2026',
     tech: ['Python', 'LightGBM', 'scikit-learn', 'lifelines'],
     github: 'https://github.com/tanaysinghh/loan-performance-intelligence-engine',
-    live: 'TODO: add live link or leave as repo only',
   },
   {
     title: 'Last-Mile Delivery Tracker',

@@ -12,7 +12,7 @@ All copy lives in `src/data`:
 - `hackathons.ts` for the hackathon timeline
 
 Any value starting with `TODO` is rendered as a visible dashed placeholder until you replace it.
-Put your resume at `public/resume.pdf`.
+The Download Resume button links to `Resume.pdf` in the `tanaysinghh/resume` repo, so updating that file updates the site.
 
 ## Scripts
 

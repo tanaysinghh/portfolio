@@ -1,10 +1,8 @@
 import { ArrowUpRight } from 'lucide-react'
 import { GithubIcon } from '../components/BrandIcons'
-import { Placeholder } from '../components/Placeholder'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
 import { projects } from '../data/projects'
-import { isPlaceholder } from '../lib/placeholder'
 
 const linkClass =
   'inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold text-fg transition-colors duration-200 hover:bg-surface-2 hover:text-accent'
@@ -47,23 +45,17 @@ export function Projects() {
               </ul>
 
               <div className="mt-auto flex flex-wrap items-center gap-2 pt-6">
-                {isPlaceholder(project.github) ? (
-                  <Placeholder>TODO: GitHub link</Placeholder>
-                ) : (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${linkClass} -ml-3`}
-                    aria-label={`${project.title} source code on GitHub (opens in a new tab)`}
-                  >
-                    <GithubIcon size={18} />
-                    Code
-                  </a>
-                )}
-                {isPlaceholder(project.live) ? (
-                  <Placeholder>TODO: live link</Placeholder>
-                ) : (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${linkClass} -ml-3`}
+                  aria-label={`${project.title} source code on GitHub (opens in a new tab)`}
+                >
+                  <GithubIcon size={18} />
+                  Code
+                </a>
+                {project.live && (
                   <a
                     href={project.live}
                     target="_blank"

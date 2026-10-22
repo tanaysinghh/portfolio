@@ -24,9 +24,11 @@ export const hackathons: Hackathon[] = [
     date: 'TODO: month and year',
     built: 'Autonomous Production Choke Controller',
     description:
-      'Constraint-aware model predictive controller that maximises oil rate from a flowing well while keeping every pressure above its limit, with zero true violations across 82,150 simulated hours.',
+      'Constraint-aware model predictive controller that sets the choke position of a flowing oil well every hour to maximise oil rate without taking wellhead, flowline, or bottom-hole pressure below its limit. Zero true constraint violations across 82,150 controlled hours and 700 Monte Carlo runs, robust to ±30% model error, with a 3.3 ms median solve time.',
     role: 'TODO: your role (e.g. solo developer, team lead)',
     outcome: 'TODO: result (e.g. finalist, winner, rank)',
     link: 'https://github.com/tanaysinghh/honeywell-choke-mpc',
   },
 ]
+
+export const alsoParticipated: string[] = ['Flipkart Grid', 'IMC Prosperity 4']
