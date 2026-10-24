@@ -1,4 +1,7 @@
 import { ArrowRight, Download, Mail } from 'lucide-react'
+import profile192 from '../assets/images/profile-192.webp'
+import profile256 from '../assets/images/profile-256.webp'
+import profile512 from '../assets/images/profile-512.webp'
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons'
 import { ButtonLink } from '../components/Button'
 import { profile } from '../data/profile'
@@ -26,17 +29,31 @@ export function Hero() {
           {profile.status}
         </p>
 
-        <h1
-          id="hero-heading"
-          className="text-[clamp(3rem,11vw,7.5rem)] leading-[0.95] font-extrabold tracking-[-0.045em] text-fg"
-        >
-          {profile.name}
-          <span className="text-accent">.</span>
-        </h1>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
+          <img
+            src={profile512}
+            srcSet={`${profile192} 192w, ${profile256} 256w, ${profile512} 512w`}
+            sizes="(min-width: 1024px) 176px, (min-width: 768px) 160px, (min-width: 640px) 128px, 96px"
+            width={512}
+            height={512}
+            loading="eager"
+            alt={profile.name}
+            className="size-24 shrink-0 rounded-full object-cover ring-2 ring-accent ring-offset-4 ring-offset-bg sm:order-last sm:size-32 md:size-40 lg:size-44"
+          />
+          <div>
+            <h1
+              id="hero-heading"
+              className="text-[clamp(3rem,11vw,7.5rem)] leading-[0.95] font-extrabold tracking-[-0.045em] text-fg"
+            >
+              {profile.name}
+              <span className="text-accent">.</span>
+            </h1>
 
-        <p className="mt-6 font-mono text-sm font-medium text-fg sm:text-base md:text-lg">
-          {profile.title}
-        </p>
+            <p className="mt-6 font-mono text-sm font-medium text-fg sm:text-base md:text-lg">
+              {profile.title}
+            </p>
+          </div>
+        </div>
 
         <div>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl">

@@ -2,7 +2,7 @@ import { ArrowUpRight, Trophy } from 'lucide-react'
 import { Placeholder } from '../components/Placeholder'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
-import { alsoParticipated, hackathons } from '../data/hackathons'
+import { hackathons } from '../data/hackathons'
 import { isPlaceholder } from '../lib/placeholder'
 
 function Value({ text }: { text: string }) {
@@ -36,23 +36,29 @@ export function Hackathons() {
               <p className="mt-4 font-semibold text-fg">{item.built}</p>
               <p className="mt-2 leading-relaxed text-muted">{item.description}</p>
 
-              <dl className="mt-6 grid gap-4 border-t border-line pt-6 sm:grid-cols-2">
-                <div>
-                  <dt className="font-mono text-xs tracking-widest text-muted uppercase">Role</dt>
-                  <dd className="mt-1.5 text-fg">
-                    <Value text={item.role} />
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-xs tracking-widest text-muted uppercase">Outcome</dt>
-                  <dd className="mt-1.5 flex items-start gap-2 font-medium text-fg">
-                    {!isPlaceholder(item.outcome) && (
-                      <Trophy size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden="true" />
-                    )}
-                    <Value text={item.outcome} />
-                  </dd>
-                </div>
-              </dl>
+              {(item.role || item.outcome) && (
+                <dl className="mt-6 grid gap-4 border-t border-line pt-6 sm:grid-cols-2">
+                  {item.role && (
+                    <div>
+                      <dt className="font-mono text-xs tracking-widest text-muted uppercase">Role</dt>
+                      <dd className="mt-1.5 text-fg">
+                        <Value text={item.role} />
+                      </dd>
+                    </div>
+                  )}
+                  {item.outcome && (
+                    <div>
+                      <dt className="font-mono text-xs tracking-widest text-muted uppercase">Outcome</dt>
+                      <dd className="mt-1.5 flex items-start gap-2 font-medium text-fg">
+                        {!isPlaceholder(item.outcome) && (
+                          <Trophy size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden="true" />
+                        )}
+                        <Value text={item.outcome} />
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+              )}
 
               {item.link && !isPlaceholder(item.link) && (
                 <a
@@ -70,24 +76,6 @@ export function Hackathons() {
           </Reveal>
         ))}
       </ol>
-
-      {alsoParticipated.length > 0 && (
-        <Reveal className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 md:ml-2">
-          <h3 className="font-mono text-xs font-medium tracking-widest text-muted uppercase">
-            Also participated
-          </h3>
-          <ul className="flex flex-wrap gap-2">
-            {alsoParticipated.map((name) => (
-              <li
-                key={name}
-                className="rounded-md border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg"
-              >
-                {name}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      )}
     </Section>
   )
 }

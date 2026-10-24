@@ -7,7 +7,7 @@ const factIcons = [GraduationCap, Star, CalendarCheck, MapPin]
 
 export function About() {
   return (
-    <Section id="about" index="01" eyebrow="About" title="Engineer first, student for one more year.">
+    <Section id="about" index="01" eyebrow="About" title="Building dependable software, end to end.">
       <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
         <Reveal>
           <div className="space-y-6">

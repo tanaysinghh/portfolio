@@ -1,11 +1,46 @@
+import { useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
+import { useRef } from 'react'
 import { GithubIcon } from '../components/BrandIcons'
+import { ButtonLink } from '../components/Button'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
-import { projects } from '../data/projects'
+import { projects, type Project } from '../data/projects'
 
-const linkClass =
-  'inline-flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm font-semibold text-fg transition-colors duration-200 hover:bg-surface-2 hover:text-accent'
+function BrowserFrame({ project }: { project: Project }) {
+  const { screenshot } = project
+  const ref = useRef<HTMLDivElement>(null)
+  const near = useInView(ref, { once: true, margin: '400px 0px' })
+  return (
+    <div className="overflow-hidden rounded-xl border border-line bg-surface shadow-xl shadow-black/5 dark:shadow-black/40">
+      <div className="flex h-9 items-center gap-2 border-b border-line bg-surface-2 px-4" aria-hidden="true">
+        <span className="size-2.5 rounded-full bg-line-strong" />
+        <span className="size-2.5 rounded-full bg-line-strong" />
+        <span className="size-2.5 rounded-full bg-line-strong" />
+        {project.live && (
+          <span className="ml-3 min-w-0 truncate rounded-md bg-bg px-3 py-0.5 font-mono text-xs text-muted">
+            {new URL(project.live).host}
+          </span>
+        )}
+      </div>
+      <div ref={ref} style={{ aspectRatio: `${screenshot.width} / ${screenshot.height}` }}>
+        {near && (
+          <img
+            src={screenshot.src}
+            srcSet={screenshot.srcSet}
+            sizes="(min-width: 1024px) 620px, calc(100vw - 2.5rem)"
+            width={screenshot.width}
+            height={screenshot.height}
+            loading="lazy"
+            decoding="async"
+            alt={`Screenshot of ${project.title}`}
+            className="block h-auto w-full"
+          />
+        )}
+      </div>
+    </div>
+  )
+}
 
 export function Projects() {
   return (
@@ -16,21 +51,21 @@ export function Projects() {
       title="Things I've built and shipped."
       intro="Full-stack systems with real deployments, tests, and documentation behind them."
     >
-      <ul className="grid gap-5 md:grid-cols-2">
+      <ol className="space-y-20 md:space-y-28">
         {projects.map((project, i) => (
           <Reveal
             as="li"
             key={project.title}
-            delay={(i % 2) * 0.06}
-            className="group flex flex-col rounded-2xl border border-line bg-surface p-6 transition-[border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-accent/60 motion-reduce:hover:translate-y-0 sm:p-8"
+            className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-14"
           >
-            <article className="flex h-full flex-col" aria-labelledby={`project-${i}`}>
-              <h3 id={`project-${i}`} className="text-xl font-bold tracking-tight text-fg sm:text-2xl">
+            <article aria-labelledby={`project-${i}`}>
+              <p className="font-mono text-sm text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <h3
+                id={`project-${i}`}
+                className="mt-3 text-2xl font-bold tracking-tight text-fg sm:text-3xl"
+              >
                 {project.title}
               </h3>
-              {project.highlight && (
-                <p className="mt-2 font-mono text-xs text-accent sm:text-sm">{project.highlight}</p>
-              )}
               <p className="mt-4 leading-relaxed text-muted">{project.description}</p>
 
               <ul className="mt-6 flex flex-wrap gap-2" aria-label="Tech stack">
@@ -44,34 +79,37 @@ export function Projects() {
                 ))}
               </ul>
 
-              <div className="mt-auto flex flex-wrap items-center gap-2 pt-6">
-                <a
+              <div className="mt-8 flex flex-wrap gap-3">
+                <ButtonLink
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${linkClass} -ml-3`}
+                  variant="secondary"
+                  icon={<GithubIcon size={18} />}
                   aria-label={`${project.title} source code on GitHub (opens in a new tab)`}
                 >
-                  <GithubIcon size={18} />
-                  Code
-                </a>
+                  GitHub
+                </ButtonLink>
                 {project.live && (
-                  <a
+                  <ButtonLink
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={linkClass}
-                    aria-label={`${project.title} live demo (opens in a new tab)`}
+                    icon={<ArrowUpRight size={18} aria-hidden="true" />}
+                    aria-label={`${project.title} live site (opens in a new tab)`}
                   >
-                    <ArrowUpRight size={18} aria-hidden="true" />
-                    Live demo
-                  </a>
+                    Live
+                  </ButtonLink>
                 )}
               </div>
             </article>
+
+            <div className="order-first lg:order-none">
+              <BrowserFrame project={project} />
+            </div>
           </Reveal>
         ))}
-      </ul>
+      </ol>
     </Section>
   )
 }

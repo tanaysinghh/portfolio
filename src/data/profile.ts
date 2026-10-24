@@ -6,14 +6,12 @@ export const profile = {
   tagline:
     'I build reliable backend services and clean, fast interfaces, from Spring Boot APIs and PostgreSQL schemas to the React dashboards on top of them.',
   email: 'singhtanay010@gmail.com',
-  phone: '+91 95588 07484',
-  phoneHref: 'tel:+919558807484',
   github: 'https://github.com/tanaysinghh',
   linkedin: 'https://www.linkedin.com/in/tanay-singh',
   resumeUrl: 'https://raw.githubusercontent.com/tanaysinghh/resume/main/Resume.pdf',
   about: [
     "I'm a final-year Computer Science student at VIT Bhopal who likes building software that holds up once real users touch it. Most of my work lives on the backend: Java and Spring Boot services, PostgreSQL schemas, webhooks, and real-time pipelines, paired with React frontends that make the data easy to act on.",
-    "Recently I've shipped an API uptime monitor with public status pages and alerting, a pull request risk-scoring platform for engineering teams, and a delivery management system with zone-based pricing. I'm looking for Software Engineer roles where I can own features end to end, write well-tested code, and keep learning from strong engineering teams.",
+    "Recently I've shipped an API uptime monitor with public status pages and alerting, and a pull request risk-scoring platform for engineering teams. I'm looking for Software Engineer roles where I can own features end to end, write well-tested code, and keep learning from strong engineering teams.",
   ],
   facts: [
     { label: 'Education', value: 'B.Tech CSE, VIT Bhopal University' },

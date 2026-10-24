@@ -1,4 +1,4 @@
-import { Mail, Phone, Send } from 'lucide-react'
+import { Mail, Send } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons'
 import { ButtonLink, buttonBase } from '../components/Button'
@@ -69,14 +69,6 @@ export function Contact() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ButtonLink href={mailto(profile.email)} icon={<Mail size={18} aria-hidden="true" />}>
               {profile.email}
-            </ButtonLink>
-            <ButtonLink
-              href={profile.phoneHref}
-              variant="secondary"
-              icon={<Phone size={18} aria-hidden="true" />}
-              aria-label={`Call ${profile.phone}`}
-            >
-              {profile.phone}
             </ButtonLink>
             <ButtonLink
               href={profile.github}
